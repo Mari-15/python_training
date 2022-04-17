@@ -19,7 +19,6 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element(by=By.NAME, value="user").click()
         wd.find_element(by=By.NAME, value="user").clear()
         wd.find_element(by=By.NAME, value="user").send_keys("admin")
-        wd.find_element_by_id("LoginForm").click()
         wd.find_element(by=By.NAME, value="pass").clear()
         wd.find_element(by=By.NAME, value="pass").send_keys("secret")
         wd.find_element(by=By.XPATH, value="//input[@value='Login']").click()
