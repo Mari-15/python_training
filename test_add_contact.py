@@ -14,8 +14,14 @@ class TestAddContact(unittest.TestCase):
     def test_add_contact(self):
         wd = self.wd
         self.homepage(wd)
-        self.login(wd)
-        self.creat_new_contact(wd)
+        self.login(wd, username="admin", password="secret")
+        self.creat_new_contact(wd, name="User_test", patronymic="User_testovich", surname="User_familia",
+                               nick="VasiliiParovoz", title="Vasilii Parovoz",
+                               comp_name="OOO \"GoodPeopleComp\"", comp_address="The USA, Green str, apt 654",
+                               home_number="8-800-999-45-45", mobile_number="+7(921)456-45-45",
+                               work_number="8-800-555-55-55", fax="No",
+                               email1="testVasili@mail.ru", email2="testVasili2@mail.com",
+                               dayBirth="1", monthBirth="July", yearBirth="1968")
         self.return_to_homepage(wd)
         self.logout(wd)
 
@@ -25,12 +31,8 @@ class TestAddContact(unittest.TestCase):
     def return_to_homepage(self, wd):
         wd.find_element(by=By.LINK_TEXT, value="home").click()
 
-    def creat_new_contact(self, wd, name="User_test", patronymic="User_testovich", surname="User_familia",
-                          nick="VasiliiParovoz", title="Vasilii Parovoz", comp_name="OOO \"GoodPeopleComp\"",
-                          comp_address="The USA, Green str, apt 654", home_number="8-800-999-45-45",
-                          mobile_number="+7(921)456-45-45", work_number="8-800-555-55-55", fax="No",
-                          email1="testVasili@mail.ru", email2="testVasili2@mail.com", dayBirth="1", monthBirth="July",
-                          yearBirth="1968"):
+    def creat_new_contact(self, wd, name, patronymic, surname, nick, title, comp_name, comp_address, home_number,
+                          mobile_number, work_number, fax, email1, email2, dayBirth, monthBirth, yearBirth):
         # init create new contact
         wd.find_element(by=By.LINK_TEXT, value="add new").click()
         # fill form
@@ -84,7 +86,7 @@ class TestAddContact(unittest.TestCase):
         wd.find_element(by=By.NAME, value="theform").click()
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
 
-    def login(self, wd, username="admin", password="secret"):
+    def login(self, wd, username, password):
         wd.find_element(by=By.NAME, value="user").click()
         wd.find_element(by=By.NAME, value="user").clear()
         wd.find_element(by=By.NAME, value="user").send_keys(username)
