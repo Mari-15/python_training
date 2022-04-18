@@ -25,69 +25,72 @@ class TestAddContact(unittest.TestCase):
     def return_to_homepage(self, wd):
         wd.find_element(by=By.LINK_TEXT, value="home").click()
 
-    def creat_new_contact(self, wd):
+    def creat_new_contact(self, wd, name="User_test", patronymic="User_testovich", surname="User_familia",
+                          nick="VasiliiParovoz", title="Vasilii Parovoz", comp_name="OOO \"GoodPeopleComp\"",
+                          comp_address="The USA, Green str, apt 654", home_number="8-800-999-45-45",
+                          mobile_number="+7(921)456-45-45", work_number="8-800-555-55-55", fax="No",
+                          email1="testVasili@mail.ru", email2="testVasili2@mail.com", dayBirth="1", monthBirth="July",
+                          yearBirth="1968"):
         # init create new contact
         wd.find_element(by=By.LINK_TEXT, value="add new").click()
         # fill form
         wd.find_element(by=By.NAME, value="firstname").clear()
-        wd.find_element(by=By.NAME, value="firstname").send_keys("User_test")
+        wd.find_element(by=By.NAME, value="firstname").send_keys(name)
         wd.find_element(by=By.NAME, value="middlename").click()
         wd.find_element(by=By.NAME, value="middlename").clear()
-        wd.find_element(by=By.NAME, value="middlename").send_keys("User_testovich")
+        wd.find_element(by=By.NAME, value="middlename").send_keys(patronymic)
         wd.find_element(by=By.NAME, value="lastname").click()
         wd.find_element(by=By.NAME, value="lastname").clear()
-        wd.find_element(by=By.NAME, value="lastname").send_keys("User_familia")
+        wd.find_element(by=By.NAME, value="lastname").send_keys(surname)
         wd.find_element(by=By.NAME, value="nickname").click()
         wd.find_element(by=By.NAME, value="nickname").clear()
-        wd.find_element(by=By.NAME, value="nickname").send_keys("VasiliiParovoz")
+        wd.find_element(by=By.NAME, value="nickname").send_keys(nick)
         wd.find_element(by=By.NAME, value="title").click()
         wd.find_element(by=By.NAME, value="title").clear()
-        wd.find_element(by=By.NAME, value="title").send_keys("Vasilii Parovoz")
+        wd.find_element(by=By.NAME, value="title").send_keys(title)
         wd.find_element(by=By.NAME, value="company").click()
         wd.find_element(by=By.NAME, value="company").clear()
-        wd.find_element(by=By.NAME, value="company").send_keys("OOO \"GoodPeopleComp\"")
+        wd.find_element(by=By.NAME, value="company").send_keys(comp_name)
         wd.find_element(by=By.NAME, value="address").click()
         wd.find_element(by=By.NAME, value="address").clear()
-        wd.find_element(by=By.NAME, value="address").send_keys("The USA, Green str, apt 654")
+        wd.find_element(by=By.NAME, value="address").send_keys(comp_address)
         wd.find_element(by=By.NAME, value="home").click()
         wd.find_element(by=By.NAME, value="home").clear()
-        wd.find_element(by=By.NAME, value="home").send_keys("8-800-999-45-45")
+        wd.find_element(by=By.NAME, value="home").send_keys(home_number)
         wd.find_element(by=By.NAME, value="mobile").click()
         wd.find_element(by=By.NAME, value="mobile").clear()
-        wd.find_element(by=By.NAME, value="mobile").send_keys("+7(921)456-45-45")
+        wd.find_element(by=By.NAME, value="mobile").send_keys(mobile_number)
         wd.find_element(by=By.NAME, value="work").click()
         wd.find_element(by=By.NAME, value="work").clear()
-        wd.find_element(by=By.NAME, value="work").send_keys("8-800-555-55-55")
+        wd.find_element(by=By.NAME, value="work").send_keys(work_number)
         wd.find_element(by=By.NAME, value="fax").click()
         wd.find_element(by=By.NAME, value="fax").clear()
-        wd.find_element(by=By.NAME, value="fax").send_keys("No")
+        wd.find_element(by=By.NAME, value="fax").send_keys(fax)
         wd.find_element(by=By.NAME, value="email").click()
         wd.find_element(by=By.NAME, value="email").clear()
-        wd.find_element(by=By.NAME, value="email").send_keys("testVasili@mail.ru")
+        wd.find_element(by=By.NAME, value="email").send_keys(email1)
         wd.find_element(by=By.NAME, value="email2").click()
         wd.find_element(by=By.NAME, value="email2").clear()
-        wd.find_element(by=By.NAME, value="email2").send_keys("testVasili2@mail.com")
+        wd.find_element(by=By.NAME, value="email2").send_keys(email2)
         # select birthdate
         wd.find_element(by=By.NAME, value="bday").click()
-        Select(wd.find_element(by=By.NAME, value="bday")).select_by_visible_text("1")
-        wd.find_element(by=By.XPATH, value="//option[@value='1']").click()
+        Select(wd.find_element(by=By.NAME, value="bday")).select_by_visible_text(dayBirth)
         wd.find_element(by=By.NAME, value="bmonth").click()
-        Select(wd.find_element(by=By.NAME, value="bmonth")).select_by_visible_text("July")
-        wd.find_element(by=By.XPATH, value="//option[@value='July']").click()
+        Select(wd.find_element(by=By.NAME, value="bmonth")).select_by_visible_text(monthBirth)
         wd.find_element(by=By.NAME, value="byear").click()
         wd.find_element(by=By.NAME, value="byear").clear()
-        wd.find_element(by=By.NAME, value="byear").send_keys("1968")
+        wd.find_element(by=By.NAME, value="byear").send_keys(yearBirth)
         # submit creation new contact
         wd.find_element(by=By.NAME, value="theform").click()
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
 
-    def login(self, wd):
+    def login(self, wd, username="admin", password="secret"):
         wd.find_element(by=By.NAME, value="user").click()
         wd.find_element(by=By.NAME, value="user").clear()
-        wd.find_element(by=By.NAME, value="user").send_keys("admin")
+        wd.find_element(by=By.NAME, value="user").send_keys(username)
         wd.find_element(by=By.NAME, value="pass").click()
         wd.find_element(by=By.NAME, value="pass").clear()
-        wd.find_element(by=By.NAME, value="pass").send_keys("secret")
+        wd.find_element(by=By.NAME, value="pass").send_keys(password)
         wd.find_element(by=By.XPATH, value="//input[@value='Login']").click()
 
     def homepage(self, wd):
