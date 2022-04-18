@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
+from contact import Contact
 
 class TestAddContact(unittest.TestCase):
     def setUp(self):
@@ -15,13 +16,13 @@ class TestAddContact(unittest.TestCase):
         wd = self.wd
         self.homepage(wd)
         self.login(wd, username="admin", password="secret")
-        self.creat_new_contact(wd, name="User_test", patronymic="User_testovich", surname="User_familia",
+        self.creat_new_contact(wd, Contact(name="User_test", patronymic="User_testovich", surname="User_familia",
                                nick="VasiliiParovoz", title="Vasilii Parovoz",
                                comp_name="OOO \"GoodPeopleComp\"", comp_address="The USA, Green str, apt 654",
                                home_number="8-800-999-45-45", mobile_number="+7(921)456-45-45",
                                work_number="8-800-555-55-55", fax="No",
                                email1="testVasili@mail.ru", email2="testVasili2@mail.com",
-                               dayBirth="1", monthBirth="July", yearBirth="1968")
+                               dayBirth="1", monthBirth="July", yearBirth="1968"))
         self.return_to_homepage(wd)
         self.logout(wd)
 
@@ -31,57 +32,56 @@ class TestAddContact(unittest.TestCase):
     def return_to_homepage(self, wd):
         wd.find_element(by=By.LINK_TEXT, value="home").click()
 
-    def creat_new_contact(self, wd, name, patronymic, surname, nick, title, comp_name, comp_address, home_number,
-                          mobile_number, work_number, fax, email1, email2, dayBirth, monthBirth, yearBirth):
+    def creat_new_contact(self, wd, contact):
         # init create new contact
         wd.find_element(by=By.LINK_TEXT, value="add new").click()
         # fill form
         wd.find_element(by=By.NAME, value="firstname").clear()
-        wd.find_element(by=By.NAME, value="firstname").send_keys(name)
+        wd.find_element(by=By.NAME, value="firstname").send_keys(contact.name)
         wd.find_element(by=By.NAME, value="middlename").click()
         wd.find_element(by=By.NAME, value="middlename").clear()
-        wd.find_element(by=By.NAME, value="middlename").send_keys(patronymic)
+        wd.find_element(by=By.NAME, value="middlename").send_keys(contact.patronymic)
         wd.find_element(by=By.NAME, value="lastname").click()
         wd.find_element(by=By.NAME, value="lastname").clear()
-        wd.find_element(by=By.NAME, value="lastname").send_keys(surname)
+        wd.find_element(by=By.NAME, value="lastname").send_keys(contact.surname)
         wd.find_element(by=By.NAME, value="nickname").click()
         wd.find_element(by=By.NAME, value="nickname").clear()
-        wd.find_element(by=By.NAME, value="nickname").send_keys(nick)
+        wd.find_element(by=By.NAME, value="nickname").send_keys(contact.nick)
         wd.find_element(by=By.NAME, value="title").click()
         wd.find_element(by=By.NAME, value="title").clear()
-        wd.find_element(by=By.NAME, value="title").send_keys(title)
+        wd.find_element(by=By.NAME, value="title").send_keys(contact.title)
         wd.find_element(by=By.NAME, value="company").click()
         wd.find_element(by=By.NAME, value="company").clear()
-        wd.find_element(by=By.NAME, value="company").send_keys(comp_name)
+        wd.find_element(by=By.NAME, value="company").send_keys(contact.comp_name)
         wd.find_element(by=By.NAME, value="address").click()
         wd.find_element(by=By.NAME, value="address").clear()
-        wd.find_element(by=By.NAME, value="address").send_keys(comp_address)
+        wd.find_element(by=By.NAME, value="address").send_keys(contact.comp_address)
         wd.find_element(by=By.NAME, value="home").click()
         wd.find_element(by=By.NAME, value="home").clear()
-        wd.find_element(by=By.NAME, value="home").send_keys(home_number)
+        wd.find_element(by=By.NAME, value="home").send_keys(contact.home_number)
         wd.find_element(by=By.NAME, value="mobile").click()
         wd.find_element(by=By.NAME, value="mobile").clear()
-        wd.find_element(by=By.NAME, value="mobile").send_keys(mobile_number)
+        wd.find_element(by=By.NAME, value="mobile").send_keys(contact.mobile_number)
         wd.find_element(by=By.NAME, value="work").click()
         wd.find_element(by=By.NAME, value="work").clear()
-        wd.find_element(by=By.NAME, value="work").send_keys(work_number)
+        wd.find_element(by=By.NAME, value="work").send_keys(contact.work_number)
         wd.find_element(by=By.NAME, value="fax").click()
         wd.find_element(by=By.NAME, value="fax").clear()
-        wd.find_element(by=By.NAME, value="fax").send_keys(fax)
+        wd.find_element(by=By.NAME, value="fax").send_keys(contact.fax)
         wd.find_element(by=By.NAME, value="email").click()
         wd.find_element(by=By.NAME, value="email").clear()
-        wd.find_element(by=By.NAME, value="email").send_keys(email1)
+        wd.find_element(by=By.NAME, value="email").send_keys(contact.email1)
         wd.find_element(by=By.NAME, value="email2").click()
         wd.find_element(by=By.NAME, value="email2").clear()
-        wd.find_element(by=By.NAME, value="email2").send_keys(email2)
+        wd.find_element(by=By.NAME, value="email2").send_keys(contact.email2)
         # select birthdate
         wd.find_element(by=By.NAME, value="bday").click()
-        Select(wd.find_element(by=By.NAME, value="bday")).select_by_visible_text(dayBirth)
+        Select(wd.find_element(by=By.NAME, value="bday")).select_by_visible_text(contact.dayBirth)
         wd.find_element(by=By.NAME, value="bmonth").click()
-        Select(wd.find_element(by=By.NAME, value="bmonth")).select_by_visible_text(monthBirth)
+        Select(wd.find_element(by=By.NAME, value="bmonth")).select_by_visible_text(contact.monthBirth)
         wd.find_element(by=By.NAME, value="byear").click()
         wd.find_element(by=By.NAME, value="byear").clear()
-        wd.find_element(by=By.NAME, value="byear").send_keys(yearBirth)
+        wd.find_element(by=By.NAME, value="byear").send_keys(contact.yearBirth)
         # submit creation new contact
         wd.find_element(by=By.NAME, value="theform").click()
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
