@@ -13,15 +13,22 @@ class TestAddContact(unittest.TestCase):
     
     def test_add_contact(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
-        wd.find_element(by=By.NAME, value="user").click()
-        wd.find_element(by=By.NAME, value="user").clear()
-        wd.find_element(by=By.NAME, value="user").send_keys("admin")
-        wd.find_element(by=By.NAME, value="pass").click()
-        wd.find_element(by=By.NAME, value="pass").clear()
-        wd.find_element(by=By.NAME, value="pass").send_keys("secret")
-        wd.find_element(by=By.XPATH, value="//input[@value='Login']").click()
+        self.homepage(wd)
+        self.login(wd)
+        self.creat_new_contact(wd)
+        self.return_to_homepage(wd)
+        self.logout(wd)
+
+    def logout(self, wd):
+        wd.find_element(by=By.LINK_TEXT, value="Logout").click()
+
+    def return_to_homepage(self, wd):
+        wd.find_element(by=By.LINK_TEXT, value="home").click()
+
+    def creat_new_contact(self, wd):
+        # init create new contact
         wd.find_element(by=By.LINK_TEXT, value="add new").click()
+        # fill form
         wd.find_element(by=By.NAME, value="firstname").clear()
         wd.find_element(by=By.NAME, value="firstname").send_keys("User_test")
         wd.find_element(by=By.NAME, value="middlename").click()
@@ -60,6 +67,7 @@ class TestAddContact(unittest.TestCase):
         wd.find_element(by=By.NAME, value="email2").click()
         wd.find_element(by=By.NAME, value="email2").clear()
         wd.find_element(by=By.NAME, value="email2").send_keys("testVasili2@mail.com")
+        # select birthdate
         wd.find_element(by=By.NAME, value="bday").click()
         Select(wd.find_element(by=By.NAME, value="bday")).select_by_visible_text("1")
         wd.find_element(by=By.XPATH, value="//option[@value='1']").click()
@@ -69,11 +77,22 @@ class TestAddContact(unittest.TestCase):
         wd.find_element(by=By.NAME, value="byear").click()
         wd.find_element(by=By.NAME, value="byear").clear()
         wd.find_element(by=By.NAME, value="byear").send_keys("1968")
+        # submit creation new contact
         wd.find_element(by=By.NAME, value="theform").click()
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
-        wd.find_element(by=By.LINK_TEXT, value="home").click()
-        wd.find_element(by=By.LINK_TEXT, value="Logout").click()
-    
+
+    def login(self, wd):
+        wd.find_element(by=By.NAME, value="user").click()
+        wd.find_element(by=By.NAME, value="user").clear()
+        wd.find_element(by=By.NAME, value="user").send_keys("admin")
+        wd.find_element(by=By.NAME, value="pass").click()
+        wd.find_element(by=By.NAME, value="pass").clear()
+        wd.find_element(by=By.NAME, value="pass").send_keys("secret")
+        wd.find_element(by=By.XPATH, value="//input[@value='Login']").click()
+
+    def homepage(self, wd):
+        wd.get("http://localhost/addressbook/")
+
     def is_element_present(self, how, what):
         try: self.wd.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
