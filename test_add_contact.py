@@ -16,13 +16,13 @@ class TestAddContact(unittest.TestCase):
         wd = self.wd
         self.homepage(wd)
         self.login(wd, username="admin", password="secret")
-        self.creat_new_contact(wd, Contact(name="User_test", patronymic="User_testovich", surname="User_familia",
+        self.creat_new_contact(wd, Contact(name="Vasilii", patronymic="Petrovich", surname="Petrov",
                                nick="VasiliiParovoz", title="Vasilii Parovoz",
                                comp_name="OOO \"GoodPeopleComp\"", comp_address="The USA, Green str, apt 654",
                                home_number="8-800-999-45-45", mobile_number="+7(921)456-45-45",
                                work_number="8-800-555-55-55", fax="No",
                                email1="testVasili@mail.ru", email2="testVasili2@mail.com",
-                               dayBirth="1", monthBirth="July", yearBirth="1968"))
+                               dayBirth="15", monthBirth="June", yearBirth="1975"))
         self.return_to_homepage(wd)
         self.logout(wd)
 
@@ -35,7 +35,7 @@ class TestAddContact(unittest.TestCase):
     def creat_new_contact(self, wd, contact):
         # init create new contact
         wd.find_element(by=By.LINK_TEXT, value="add new").click()
-        # fill form
+        # fill contact form
         wd.find_element(by=By.NAME, value="firstname").clear()
         wd.find_element(by=By.NAME, value="firstname").send_keys(contact.name)
         wd.find_element(by=By.NAME, value="middlename").click()
