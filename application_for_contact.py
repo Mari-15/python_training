@@ -9,13 +9,20 @@ class Application():
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def logout(self):
+    def homepage(self):
         wd = self.wd
-        wd.find_element(by=By.LINK_TEXT, value="Logout").click()
+        wd.get("http://localhost/addressbook/")
 
-    def return_to_homepage(self):
+    def login(self, username, password):
         wd = self.wd
-        wd.find_element(by=By.LINK_TEXT, value="home").click()
+        self.homepage()
+        wd.find_element(by=By.NAME, value="user").click()
+        wd.find_element(by=By.NAME, value="user").clear()
+        wd.find_element(by=By.NAME, value="user").send_keys(username)
+        wd.find_element(by=By.NAME, value="pass").click()
+        wd.find_element(by=By.NAME, value="pass").clear()
+        wd.find_element(by=By.NAME, value="pass").send_keys(password)
+        wd.find_element(by=By.XPATH, value="//input[@value='Login']").click()
 
     def create_new_contact(self, contact):
         wd = self.wd
@@ -73,20 +80,13 @@ class Application():
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
         self.return_to_homepage()
 
-    def login(self, username, password):
+    def return_to_homepage(self):
         wd = self.wd
-        self.homepage()
-        wd.find_element(by=By.NAME, value="user").click()
-        wd.find_element(by=By.NAME, value="user").clear()
-        wd.find_element(by=By.NAME, value="user").send_keys(username)
-        wd.find_element(by=By.NAME, value="pass").click()
-        wd.find_element(by=By.NAME, value="pass").clear()
-        wd.find_element(by=By.NAME, value="pass").send_keys(password)
-        wd.find_element(by=By.XPATH, value="//input[@value='Login']").click()
+        wd.find_element(by=By.LINK_TEXT, value="home").click()
 
-    def homepage(self):
+    def logout(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
+        wd.find_element(by=By.LINK_TEXT, value="Logout").click()
 
     def destroy(self):
         self.wd.quit()
