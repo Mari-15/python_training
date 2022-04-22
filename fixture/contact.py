@@ -61,4 +61,4 @@ class ContactHelper:
         # submit creation new contact
         wd.find_element(by=By.NAME, value="theform").click()
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
-        self.app.return_to_homepage()
+        self.app.navigation.return_to_homepage()
