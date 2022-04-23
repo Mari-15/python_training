@@ -21,3 +21,13 @@ class DeleteHelper:
         # submit deletion
         wd.find_element(by=By.XPATH, value="//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
+
+    def delete_first_group(self):
+        wd = self.app.wd
+        self.app.group.open_groups_page()
+        # select first group
+        wd.find_element(by=By.NAME, value="selected[]").click()
+        # submit deletion
+        wd.find_element(by=By.NAME, value="delete").click()
+        self.app.group.return_to_groups_page()
+

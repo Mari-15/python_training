@@ -118,26 +118,6 @@ class ModifyHelper:
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
         self.app.navigation.return_to_homepage()
 
-    def add_first_contact_to_group(self, group_name):
-        wd = self.app.wd
-        # select first contact
-        wd.find_element(by=By.NAME, value="selected[]").click()
-        # open group list and select group
-        wd.find_element(by=By.NAME, value="to_group").click()
-        Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
-        # submit add
-        wd.find_element(by=By.NAME, value="add").click()
-
-    def add_all_contacts_to_group(self, group_name):
-        wd = self.app.wd
-        # select all contacts
-        wd.find_element(by=By.ID, value="MassCB").click()
-        # open group list and select group
-        wd.find_element(by=By.NAME, value="to_group").click()
-        Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
-        # submit add
-        wd.find_element(by=By.NAME, value="add").click()
-
     def modify_group(self, group):
         wd = self.app.wd
         self.app.group.open_groups_page()

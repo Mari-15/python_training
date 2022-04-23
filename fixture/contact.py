@@ -62,3 +62,34 @@ class ContactHelper:
         wd.find_element(by=By.NAME, value="theform").click()
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
         self.app.navigation.return_to_homepage()
+
+    def add_first_contact_to_group(self, group_name):
+        wd = self.app.wd
+        # select first contact
+        wd.find_element(by=By.NAME, value="selected[]").click()
+        # open group list and select group
+        wd.find_element(by=By.NAME, value="to_group").click()
+        Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
+        # submit add
+        wd.find_element(by=By.NAME, value="add").click()
+
+    def add_all_contacts_to_group(self, group_name):
+        wd = self.app.wd
+        # select all contacts
+        wd.find_element(by=By.ID, value="MassCB").click()
+        # open group list and select group
+        wd.find_element(by=By.NAME, value="to_group").click()
+        Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
+        # submit add
+        wd.find_element(by=By.NAME, value="add").click()
+
+    def remove_first_contact_from_group(self, group_name):
+        wd = self.app.wd
+        # select group
+        wd.find_element(by=By.NAME, value="group").click()
+        Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text(group_name)
+        # select first contact
+        wd.find_element(by=By.NAME, value="selected[]").click()
+        # submit remove
+        wd.find_element(by=By.NAME, value="remove").click()
+        self.app.navigation.return_to_homepage()
