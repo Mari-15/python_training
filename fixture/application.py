@@ -3,6 +3,8 @@ from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.navigation import NavigationHelper
 from fixture.contact import ContactHelper
+from fixture.delete import DeleteHelper
+from fixture.modify import ModifyHelper
 
 
 class Application:
@@ -14,6 +16,8 @@ class Application:
         self.group = GroupHelper(self)
         self.navigation = NavigationHelper(self)
         self.contact = ContactHelper(self)
+        self.delete = DeleteHelper(self)
+        self.modify = ModifyHelper(self)
 
     def destroy(self):
         self.wd.quit()
