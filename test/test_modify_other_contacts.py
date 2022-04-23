@@ -1,7 +1,9 @@
+import pytest
 from model.contact import Contact
 
 
 def test_modify_other_contacts(app):
+    pytest.skip()
     app.session.login(username="admin", password="secret")
     app.contact.modify_other(Contact(number_of_contact=6, name="Number6", patronymic="", surname="Yaho",
                                      nick="VasiliiParovoz", title="Vasilii Parovoz",
