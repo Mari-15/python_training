@@ -62,7 +62,6 @@ class ModifyHelper:
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
         self.app.navigation.return_to_homepage()
 
-
     def modify_other(self, contact):
         wd = self.app.wd
         # init edit a contact, where tr[3] is a position of contact +1 (№1 = 2, №2 = 3, etc)
@@ -138,3 +137,24 @@ class ModifyHelper:
         Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
         # submit add
         wd.find_element(by=By.NAME, value="add").click()
+
+    def modify_group(self, group):
+        wd = self.app.wd
+        self.app.group.open_groups_page()
+        # init edit group, where span[1] is a number of a group
+        wd.find_element(by=By.XPATH,
+                        value=("//div[@id='content']/form/span[%s]/input" % group.number_of_group)).click()
+        wd.find_element(by=By.NAME, value="edit").click()
+        # fill group form
+        wd.find_element(by=By.NAME, value="group_name").click()
+        wd.find_element(by=By.NAME, value="group_name").clear()
+        wd.find_element(by=By.NAME, value="group_name").send_keys(group.name)
+        wd.find_element(by=By.NAME, value="group_header").click()
+        wd.find_element(by=By.NAME, value="group_header").clear()
+        wd.find_element(by=By.NAME, value="group_header").send_keys(group.header)
+        wd.find_element(by=By.NAME, value="group_footer").click()
+        wd.find_element(by=By.NAME, value="group_footer").clear()
+        wd.find_element(by=By.NAME, value="group_footer").send_keys(group.footer)
+        # submit edit group
+        wd.find_element(by=By.NAME, value="update").click()
+        self.app.group.return_to_groups_page()
