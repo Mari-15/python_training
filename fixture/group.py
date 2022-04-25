@@ -10,11 +10,8 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element(by=By.LINK_TEXT, value="groups").click()
 
-    def create(self, group):
+    def group_fill_form(self, group):
         wd = self.app.wd
-        self.open_groups_page()
-        # init group creation
-        wd.find_element(by=By.NAME, value="new").click()
         # fill group form
         wd.find_element(by=By.NAME, value="group_name").click()
         wd.find_element(by=By.NAME, value="group_name").clear()
@@ -25,6 +22,13 @@ class GroupHelper:
         wd.find_element(by=By.NAME, value="group_footer").click()
         wd.find_element(by=By.NAME, value="group_footer").clear()
         wd.find_element(by=By.NAME, value="group_footer").send_keys(group.footer)
+
+    def create(self, group):
+        wd = self.app.wd
+        self.open_groups_page()
+        # init group creation
+        wd.find_element(by=By.NAME, value="new").click()
+        self.group_fill_form(group)
         # submit group creation
         wd.find_element(by=By.NAME, value="submit").click()
         self.return_to_groups_page()

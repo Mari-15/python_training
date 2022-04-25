@@ -7,10 +7,8 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def create(self, contact):
+    def contact_fill_form(self, contact):
         wd = self.app.wd
-        # init create new contact
-        wd.find_element(by=By.LINK_TEXT, value="add new").click()
         # fill contact form
         wd.find_element(by=By.NAME, value="firstname").clear()
         wd.find_element(by=By.NAME, value="firstname").send_keys(contact.name)
@@ -58,6 +56,12 @@ class ContactHelper:
         wd.find_element(by=By.NAME, value="byear").click()
         wd.find_element(by=By.NAME, value="byear").clear()
         wd.find_element(by=By.NAME, value="byear").send_keys(contact.year_Birth)
+
+    def create(self, contact):
+        wd = self.app.wd
+        # init create new contact
+        wd.find_element(by=By.LINK_TEXT, value="add new").click()
+        self.contact_fill_form(contact)
         # submit creation new contact
         wd.find_element(by=By.NAME, value="theform").click()
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
