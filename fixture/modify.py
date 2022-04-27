@@ -6,7 +6,7 @@ class ModifyHelper:
     def __init__(self, app):
         self.app = app
 
-    def modify_first_contact(self, contact):
+    def first_contact(self, contact):
         wd = self.app.wd
         # init edit first contact
         wd.find_element(by=By.XPATH, value="//img[@alt='Edit']").click()
@@ -15,7 +15,7 @@ class ModifyHelper:
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
         self.app.navigation.return_to_homepage()
 
-    def modify_other_contacts(self, contact):
+    def other_contacts(self, contact):
         wd = self.app.wd
         # init edit a contact, where tr[3] is a position of contact +1 (№1 = 2, №2 = 3, etc)
         wd.find_element(by=By.XPATH,
@@ -25,7 +25,7 @@ class ModifyHelper:
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
         self.app.navigation.return_to_homepage()
 
-    def modify_group(self, group):
+    def group(self, group):
         wd = self.app.wd
         self.app.group.open_groups_page()
         # init edit group, where span[1] is a number of a group
