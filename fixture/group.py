@@ -12,7 +12,6 @@ class GroupHelper:
 
     def group_fill_form(self, group):
         wd = self.app.wd
-        # fill group form
         wd.find_element(by=By.NAME, value="group_name").click()
         wd.find_element(by=By.NAME, value="group_name").clear()
         wd.find_element(by=By.NAME, value="group_name").send_keys(group.name)
