@@ -12,15 +12,16 @@ class GroupHelper:
 
     def group_fill_form(self, group):
         wd = self.app.wd
-        wd.find_element(by=By.NAME, value="group_name").click()
-        wd.find_element(by=By.NAME, value="group_name").clear()
-        wd.find_element(by=By.NAME, value="group_name").send_keys(group.name)
-        wd.find_element(by=By.NAME, value="group_header").click()
-        wd.find_element(by=By.NAME, value="group_header").clear()
-        wd.find_element(by=By.NAME, value="group_header").send_keys(group.header)
-        wd.find_element(by=By.NAME, value="group_footer").click()
-        wd.find_element(by=By.NAME, value="group_footer").clear()
-        wd.find_element(by=By.NAME, value="group_footer").send_keys(group.footer)
+        self.change_field_value("group_name", group.name)
+        self.change_field_value("group_header", group.header)
+        self.change_field_value("group_footer", group.footer)
+
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element(by=By.NAME, value=field_name).click()
+            wd.find_element(by=By.NAME, value=field_name).clear()
+            wd.find_element(by=By.NAME, value=field_name).send_keys(text)
 
     def create(self, group):
         wd = self.app.wd
@@ -35,3 +36,8 @@ class GroupHelper:
     def return_to_groups_page(self):
         wd = self.app.wd
         wd.find_element(by=By.LINK_TEXT, value="group page").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        return len(wd.find_elements(By.NAME, "selected[]"))
