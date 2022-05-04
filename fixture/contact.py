@@ -71,19 +71,20 @@ class ContactHelper:
         wd = self.app.wd
         # select first contact
         wd.find_element(by=By.NAME, value="selected[]").click()
-        # open group list and select group
-        wd.find_element(by=By.NAME, value="to_group").click()
-        Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
+        self.open_group_list_and_select_group(group_name)
         # submit add
         wd.find_element(by=By.NAME, value="add").click()
+
+    def open_group_list_and_select_group(self, group_name):
+        wd = self.app.wd
+        wd.find_element(by=By.NAME, value="to_group").click()
+        Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
 
     def add_all_contacts_to_group(self, group_name):
         wd = self.app.wd
         # select all contacts
         wd.find_element(by=By.ID, value="MassCB").click()
-        # open group list and select group
-        wd.find_element(by=By.NAME, value="to_group").click()
-        Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
+        self.open_group_list_and_select_group(group_name)
         # submit add
         wd.find_element(by=By.NAME, value="add").click()
 
