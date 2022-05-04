@@ -3,8 +3,8 @@ from model.contact import Contact
 
 
 def test_add_contact(app):
-    app.contact.create(Contact(number_of_contact=None, name="Vasilii", patronymic="Petrovich", surname="Petrov",
-                               nick="VasiliiParovoz", title="Vasilii Parovoz",
+    app.contact.create(Contact(name="Vasilii", patronymic="Petrovich", surname="Petrov",
+                               nick="VasiliiParovoz",
                                comp_name="OOO \"GoodPeopleComp\"", comp_address="The USA, Green str, apt 654",
                                home_number="8-800-999-45-45", mobile_number="+7(921)456-45-45",
                                work_number="8-800-555-55-55", fax="No",
