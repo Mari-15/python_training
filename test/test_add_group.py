@@ -8,3 +8,4 @@ def test_add_group(app):
 
 def test_add_empty_group(app):
     app.group.create(Group(name="", header="", footer=""))
+    app.navigation.return_to_homepage()

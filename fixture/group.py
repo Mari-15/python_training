@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 
 
 class GroupHelper:
@@ -41,3 +42,21 @@ class GroupHelper:
         wd = self.app.wd
         self.open_groups_page()
         return len(wd.find_elements(By.NAME, "selected[]"))
+
+    def open_group_list_and_select_group(self, group_name):
+        wd = self.app.wd
+        wd.find_element(by=By.NAME, value="to_group").click()
+        Select(wd.find_element(by=By.NAME, value="to_group")).select_by_visible_text(group_name)
+
+    def count_contact_in_group(self, group_name):
+        wd = self.app.wd
+        self.app.navigation.return_to_homepage()
+        wd.find_element(by=By.NAME, value="group").click()
+        Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text(group_name)
+        return len(wd.find_elements(By.NAME, "selected[]"))
+
+    def show_all_contacts(self):
+        wd = self.app.wd
+        wd.find_element(by=By.NAME, value="group").click()
+        Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text("[none]")
+

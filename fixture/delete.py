@@ -13,6 +13,7 @@ class DeleteHelper:
         # submit deletion
         wd.find_element(by=By.XPATH, value="//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
+        self.app.navigation.return_to_homepage()
 
     def all_contacts(self):
         wd = self.app.wd
