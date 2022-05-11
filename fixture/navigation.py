@@ -12,4 +12,5 @@ class NavigationHelper:
 
     def return_to_homepage(self):
         wd = self.app.wd
-        wd.find_element(by=By.LINK_TEXT, value="home").click()
+        if not wd.current_url.endswith("/addressbook"):
+            wd.find_element(by=By.LINK_TEXT, value="home").click()

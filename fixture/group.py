@@ -9,7 +9,8 @@ class GroupHelper:
 
     def open_groups_page(self):
         wd = self.app.wd
-        wd.find_element(by=By.LINK_TEXT, value="groups").click()
+        if not (wd.current_url.endswith("/group.php") and len(wd.find_elements(By.NAME, "new")) > 0):
+            wd.find_element(by=By.LINK_TEXT, value="groups").click()
 
     def group_fill_form(self, group):
         wd = self.app.wd
