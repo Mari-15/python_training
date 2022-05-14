@@ -12,7 +12,7 @@ def test_add_contact(app):
                                email1="testVasili@mail.ru", email2="testVasili2@mail.com",
                                day_Birth="15", month_Birth="June", year_Birth="1975")
     app.contact.create(contact)
+    assert (len(old_contacts) + 1) == app.contact.count()
     new_contacts = app.contact.get_contact_list()
-    assert (len(old_contacts) + 1) == len(new_contacts)
     old_contacts.append(contact)
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)

@@ -14,6 +14,7 @@ class ModifyHelper:
         # submit edit a contact
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
         self.app.navigation.return_to_homepage()
+        self.app.contact.contact_cache = None
 
     def other_contacts(self, contact):
         wd = self.app.wd
@@ -24,6 +25,7 @@ class ModifyHelper:
         # submit edit a contact
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
         self.app.navigation.return_to_homepage()
+        self.app.contact.contact_cache = None
 
     def group(self, group):
         wd = self.app.wd
@@ -36,3 +38,4 @@ class ModifyHelper:
         # submit edit group
         wd.find_element(by=By.NAME, value="update").click()
         self.app.group.return_to_groups_page()
+        self.app.group.group_cache = None

@@ -51,6 +51,7 @@ class ContactHelper:
         wd.find_element(by=By.NAME, value="theform").click()
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[21]").click()
         self.app.navigation.return_to_homepage()
+        self.contact_cache = None
 
     def add_first_contact_to_group(self, group_name):
         wd = self.app.wd
@@ -87,13 +88,16 @@ class ContactHelper:
         self.app.navigation.return_to_homepage()
         return len(wd.find_elements(By.NAME, "selected[]"))
 
+    contact_cache = None
+
     def get_contact_list(self):
-        wd = self.app.wd
-        self.app.navigation.return_to_homepage()
-        contacts = []
-        for element in wd.find_elements(by=By.NAME, value="entry"):
-            surname1 = element.find_element(by=By.CSS_SELECTOR, value="td:nth-child(2)").text
-            name1 = element.find_element(by=By.CSS_SELECTOR, value="td:nth-child(3)").text
-            id = element.find_element(by=By.NAME, value="selected[]").get_attribute("value")
-            contacts.append(Contact(number_of_contact=id, surname=surname1, name=name1))
-        return contacts
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.app.navigation.return_to_homepage()
+            self.contact_cache = []
+            for element in wd.find_elements(by=By.NAME, value="entry"):
+                surname1 = element.find_element(by=By.CSS_SELECTOR, value="td:nth-child(2)").text
+                name1 = element.find_element(by=By.CSS_SELECTOR, value="td:nth-child(3)").text
+                id = element.find_element(by=By.NAME, value="selected[]").get_attribute("value")
+                self.contact_cache.append(Contact(number_of_contact=id, surname=surname1, name=name1))
+        return list(self.contact_cache)

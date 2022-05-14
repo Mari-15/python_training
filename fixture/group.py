@@ -35,6 +35,7 @@ class GroupHelper:
         # submit group creation
         wd.find_element(by=By.NAME, value="submit").click()
         self.return_to_groups_page()
+        self.group_cache = None
 
     def return_to_groups_page(self):
         wd = self.app.wd
@@ -62,14 +63,17 @@ class GroupHelper:
         wd.find_element(by=By.NAME, value="group").click()
         Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text("[none]")
 
+    group_cache = None
+
     def get_group_list(self):
-        wd = self.app.wd
-        self.open_groups_page()
-        groups = []
-        for element in wd.find_elements(By.CSS_SELECTOR, value="span.group"):
-            text = element.text
-            id = element.find_element(by=By.NAME, value="selected[]").get_attribute("value")
-            groups.append(Group(name=text, id=id))
-        return groups
+        if self.group_cache is None:
+            wd = self.app.wd
+            self.open_groups_page()
+            self.group_cache = []
+            for element in wd.find_elements(By.CSS_SELECTOR, value="span.group"):
+                text = element.text
+                id = element.find_element(by=By.NAME, value="selected[]").get_attribute("value")
+                self.group_cache.append(Group(name=text, id=id))
+        return list(self.group_cache)
 
 
