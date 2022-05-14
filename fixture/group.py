@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from model.group import Group
 
 
 class GroupHelper:
@@ -12,7 +13,7 @@ class GroupHelper:
         if not (wd.current_url.endswith("/group.php") and len(wd.find_elements(By.NAME, "new")) > 0):
             wd.find_element(by=By.LINK_TEXT, value="groups").click()
 
-    def group_fill_form(self, group):
+    def fill_form(self, group):
         wd = self.app.wd
         self.change_field_value("group_name", group.name)
         self.change_field_value("group_header", group.header)
@@ -30,7 +31,7 @@ class GroupHelper:
         self.open_groups_page()
         # init group creation
         wd.find_element(by=By.NAME, value="new").click()
-        self.group_fill_form(group)
+        self.fill_form(group)
         # submit group creation
         wd.find_element(by=By.NAME, value="submit").click()
         self.return_to_groups_page()
@@ -60,4 +61,15 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element(by=By.NAME, value="group").click()
         Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text("[none]")
+
+    def get_group_list(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        groups = []
+        for element in wd.find_elements(By.CSS_SELECTOR, value="span.group"):
+            text = element.text
+            id = element.find_element(by=By.NAME, value="selected[]").get_attribute("value")
+            groups.append(Group(name=text, id=id))
+        return groups
+
 

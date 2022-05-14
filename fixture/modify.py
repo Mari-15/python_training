@@ -32,7 +32,7 @@ class ModifyHelper:
         wd.find_element(by=By.XPATH,
                         value=("//div[@id='content']/form/span[%s]/input" % group.number_of_group)).click()
         wd.find_element(by=By.NAME, value="edit").click()
-        self.app.group.group_fill_form(group)
+        self.app.group.fill_form(group)
         # submit edit group
         wd.find_element(by=By.NAME, value="update").click()
         self.app.group.return_to_groups_page()
