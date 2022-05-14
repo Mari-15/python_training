@@ -13,3 +13,5 @@ def test_modify_other_contacts(app):
                                       email1="t@mail.ru", day_Birth="1"))
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
+    old_contacts = app.contact.get_contact_list()
+    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
