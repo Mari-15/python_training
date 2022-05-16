@@ -16,26 +16,28 @@ class ModifyHelper:
         self.app.navigation.return_to_homepage()
         self.app.contact.contact_cache = None
 
-    def other_contacts(self, contact):
+    def contact_by_index(self, index, contact):
         wd = self.app.wd
-        # init edit a contact, where tr[3] is a position of contact +1 (№1 = 2, №2 = 3, etc)
-        wd.find_element(by=By.XPATH,
-                        value=("//table[@id='maintable']/tbody/tr[%s]/td[8]/a/img" % contact.number_of_contact)).click()
+        self.app.contact.select_contact_by_index(index)
+        # open modification form
+        wd.find_element(by=By.CSS_SELECTOR, value="img[alt=\"Edit\"]").click()
         self.app.contact.contact_fill_form(contact)
         # submit edit a contact
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
         self.app.navigation.return_to_homepage()
         self.app.contact.contact_cache = None
 
-    def group(self, group):
+    def group_by_index(self, index, group):
         wd = self.app.wd
         self.app.group.open_groups_page()
-        # init edit group, where span[1] is a number of a group
-        wd.find_element(by=By.XPATH,
-                        value=("//div[@id='content']/form/span[%s]/input" % group.number_of_group)).click()
+        self.app.group.select_group_by_index(index)
+        # open modification form
         wd.find_element(by=By.NAME, value="edit").click()
         self.app.group.fill_form(group)
         # submit edit group
         wd.find_element(by=By.NAME, value="update").click()
         self.app.group.return_to_groups_page()
         self.app.group.group_cache = None
+
+    def group(self):
+        self.group_by_index(0)

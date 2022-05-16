@@ -63,6 +63,14 @@ class GroupHelper:
         wd.find_element(by=By.NAME, value="group").click()
         Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text("[none]")
 
+    def select_first_group(self):
+        wd = self.app.wd
+        wd.find_element(by=By.NAME, value="selected[]").click()
+
+    def select_group_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements(By.NAME, "selected[]")[index].click()
+
     group_cache = None
 
     def get_group_list(self):

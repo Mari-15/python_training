@@ -7,9 +7,11 @@ class DeleteHelper:
         self.app = app
 
     def first_contact(self):
+        self.contact_by_index(0)
+
+    def contact_by_index(self, index):
         wd = self.app.wd
-        # select first contact
-        wd.find_element(by=By.NAME, value="selected[]").click()
+        self.app.contact.select_contact_by_index(index)
         # submit deletion
         wd.find_element(by=By.XPATH, value="//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
@@ -27,10 +29,12 @@ class DeleteHelper:
         self.app.contact.contact_cache = None
 
     def first_group(self):
+        self.group_by_index(0)
+
+    def group_by_index(self, index):
         wd = self.app.wd
         self.app.group.open_groups_page()
-        # select first group
-        wd.find_element(by=By.NAME, value="selected[]").click()
+        self.app.group.select_group_by_index(index)
         # submit deletion
         wd.find_element(by=By.NAME, value="delete").click()
         self.app.group.return_to_groups_page()
