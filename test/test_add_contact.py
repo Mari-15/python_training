@@ -4,7 +4,7 @@ from model.contact import Contact
 
 def test_add_contact(app):
     old_contacts = app.contact.get_contact_list()
-    contact = Contact(name="Vasilii", patronymic="Petrovich", surname="Petrov",
+    contact = Contact(name="First", patronymic="Petrovich", surname="Petrov",
                                nick="VasiliiParovoz",
                                comp_name="OOO \"GoodPeopleComp\"", comp_address="The USA, Green str, apt 654",
                                home_number="8-800-999-45-45", mobile_number="+7(921)456-45-45",

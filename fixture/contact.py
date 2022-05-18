@@ -67,7 +67,7 @@ class ContactHelper:
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
-        wd.find_elements(By.NAME, "selected[]")[index].click()
+        wd.find_elements(By.CSS_SELECTOR, "img[alt=\"Edit\"]")[index].click()
 
     def add_all_contacts_to_group(self, group_name):
         wd = self.app.wd

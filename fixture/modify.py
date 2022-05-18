@@ -19,8 +19,6 @@ class ModifyHelper:
     def contact_by_index(self, index, contact):
         wd = self.app.wd
         self.app.contact.select_contact_by_index(index)
-        # open modification form
-        wd.find_element(by=By.CSS_SELECTOR, value="img[alt=\"Edit\"]").click()
         self.app.contact.contact_fill_form(contact)
         # submit edit a contact
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
