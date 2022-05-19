@@ -5,11 +5,8 @@ from random import randrange
 def test_modify_some_contacts(app):
     if app.contact.count() == 1:
         app.contact.create(Contact(name="Second", surname="Black",
-                               home_number="88009994545", mobile_number="+79214564545",
-                               work_number="88005555555"))
-        app.contact.create(Contact(name="Third", surname="Jinjer",
-                               home_number="88009994545", mobile_number="+79214564545",
-                               work_number="88005555555"))
+                               home_number="88009994545"))
+        app.contact.create(Contact(name="Third", surname="Jinjer"))
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
     contact = Contact(name="Vosr", surname="Rosl",

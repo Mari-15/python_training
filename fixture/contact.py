@@ -106,8 +106,11 @@ class ContactHelper:
                 name1 = element.find_element(by=By.CSS_SELECTOR, value="td:nth-child(3)").text
                 id = element.find_element(by=By.NAME, value="selected[]").get_attribute("value")
                 all_phones = cell[5].text
+                emails = cell[4].text
+                homeadress = cell[3].text
                 self.contact_cache.append(Contact(number_of_contact=id, surname=surname1, name=name1,
-                                                  all_phones_from_home_page=all_phones))
+                                                  all_phones_from_homepage=all_phones, all_emails=emails,
+                                                  comp_address=homeadress))
         return list(self.contact_cache)
 
     def open_contact_view_by_index(self, index):
@@ -127,16 +130,29 @@ class ContactHelper:
         homenumber = wd.find_element(by=By.NAME, value='home').get_attribute('value')
         mobilenumber = wd.find_element(by=By.NAME, value='mobile').get_attribute('value')
         worknumber = wd.find_element(by=By.NAME, value='work').get_attribute('value')
+        email1 = wd.find_element(by=By.NAME, value='email').get_attribute('value')
+        email2 = wd.find_element(by=By.NAME, value='email2').get_attribute('value')
+        homeadress = wd.find_element(by=By.NAME, value='address').get_attribute('value')
         return Contact(name=firstname, surname=surname, id=id, home_number=homenumber,
-                       mobile_number=mobilenumber, work_number=worknumber)
+                       mobile_number=mobilenumber, work_number=worknumber, email1=email1, email2=email2,
+                       comp_address=homeadress)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
         self.open_contact_view_by_index(index)
         text = wd.find_element(by=By.ID, value='content').text
-        homenumber = re.search('H: (.*)', text).group(1)
-        mobilenumber = re.search('M: (.*)', text).group(1)
-        worknumber = re.search('W: (.*)', text).group(1)
+        if re.search('H:', text) is not None:
+            homenumber = re.search('H: (.*)', text).group(1)
+        else:
+            homenumber = ''
+        if re.search('M:', text) is not None:
+            mobilenumber = re.search('M: (.*)', text).group(1)
+        else:
+            mobilenumber = ''
+        if re.search('W: (.*)', text) is not None:
+            worknumber = re.search('W: (.*)', text).group(1)
+        else:
+            worknumber = ''
         return Contact(home_number=homenumber, mobile_number=mobilenumber, work_number=worknumber)
 
 
