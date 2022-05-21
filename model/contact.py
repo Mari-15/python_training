@@ -29,7 +29,8 @@ class Contact:
         self.all_emails = all_emails
 
     def __repr__(self):
-        return "%s: %s %s" % (self.number_of_contact, self.surname, self.name)
+        return "%s: %s %s; %s, %s, %s, %s" % (self.number_of_contact, self.surname, self.name, self.comp_address,
+                                              self.email1, self.home_number, self.work_number)
 
     def __eq__(self, other):
         return (self.number_of_contact is None or other.number_of_contact is None
