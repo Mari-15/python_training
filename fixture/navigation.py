@@ -8,7 +8,7 @@ class NavigationHelper:
 
     def open_home_page(self):
         wd = self.app.wd
-        wd.get("http://localhost/addressbook/")
+        wd.get(self.app.base_url)
 
     def return_to_homepage(self):
         wd = self.app.wd
