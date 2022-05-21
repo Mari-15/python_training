@@ -2,12 +2,12 @@ from model.group import Group
 from random import randrange
 
 
-def test_modify_some_group(app):
+def test_modify_some_group(app, data_group):
+    group = data_group
     if app.group.count() == 0:
-        app.group.create(Group(name="Test1", footer="group for test"))
+        app.group.create(group)
     old_groups = app.group.get_group_list()
     index = randrange(len(old_groups))
-    group = Group(name="Gro54")
     group.number_of_group = old_groups[index].number_of_group
     app.modify.group_by_index(index, group)
     assert len(old_groups) == app.group.count()

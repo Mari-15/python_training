@@ -1,13 +1,11 @@
 import re
 from random import randrange
-from model.contact import Contact
 
 
-def test_check_details_some_contact(app):
+def test_check_details_some_contact(app, data_contact):
+    contact = data_contact
     if app.contact.count() == 0:
-        app.contact.create(Contact(name="Odin", surname="Vasili", comp_address="The Earth",
-                               home_number="8-800-999-45-45", mobile_number="+7(921)456-45-45",
-                               work_number="8-800-555-55-55", email1="testVasili@mail.ru", email2="testVasili2@mail.com"))
+        app.contact.create(contact)
     contact = app.contact.get_contact_list()
     index = randrange(len(contact))
     contact_from_homepage = app.contact.get_contact_list()[index]
