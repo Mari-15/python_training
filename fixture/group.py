@@ -62,6 +62,7 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element(by=By.NAME, value="group").click()
         Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text("[none]")
+        self.app.navigation.return_to_homepage()
 
     def select_first_group(self):
         wd = self.app.wd
