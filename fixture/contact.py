@@ -23,8 +23,10 @@ class ContactHelper:
         self.change_field_value_c("mobile", contact.mobile_number)
         self.change_field_value_c("work", contact.work_number)
         self.change_field_value_c("fax", contact.fax)
+        self.change_field_value_c("phone2", contact.phone2)
         self.change_field_value_c("email", contact.email1)
         self.change_field_value_c("email2", contact.email2)
+        self.change_field_value_c("email3", contact.email3)
         # select birthdate
         self.change_date_birth("bday", contact.day_Birth)
         self.change_date_birth("bmonth", contact.month_Birth)
@@ -132,10 +134,13 @@ class ContactHelper:
         worknumber = wd.find_element(by=By.NAME, value='work').get_attribute('value')
         email1 = wd.find_element(by=By.NAME, value='email').get_attribute('value')
         email2 = wd.find_element(by=By.NAME, value='email2').get_attribute('value')
-        homeadress = wd.find_element(by=By.NAME, value='address').get_attribute('value')
+        email3 = wd.find_element(by=By.NAME, value='email3').get_attribute('value')
+        phone2 = wd.find_element(by=By.NAME, value='phone2').get_attribute('value')
+        adress = wd.find_element(by=By.NAME, value='address').get_attribute('value')
         return Contact(name=firstname, surname=surname, id=id, home_number=homenumber,
-                       mobile_number=mobilenumber, work_number=worknumber, email1=email1, email2=email2,
-                       comp_address=homeadress)
+                       mobile_number=mobilenumber, work_number=worknumber, phone2=phone2,
+                       email1=email1, email2=email2,
+                       email3= email3, comp_address=adress)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
@@ -153,7 +158,11 @@ class ContactHelper:
             worknumber = re.search('W: (.*)', text).group(1)
         else:
             worknumber = ''
-        return Contact(home_number=homenumber, mobile_number=mobilenumber, work_number=worknumber)
+        if re.search('P: (.*)', text) is not None:
+            phone2 = re.search('P: (.*)', text).group(1)
+        else:
+            phone2 = ''
+        return Contact(home_number=homenumber, mobile_number=mobilenumber, work_number=worknumber, phone2=phone2)
 
 
 
