@@ -136,11 +136,11 @@ class ContactHelper:
         email2 = wd.find_element(by=By.NAME, value='email2').get_attribute('value')
         email3 = wd.find_element(by=By.NAME, value='email3').get_attribute('value')
         phone2 = wd.find_element(by=By.NAME, value='phone2').get_attribute('value')
-        adress = wd.find_element(by=By.NAME, value='address').get_attribute('value')
+        address = wd.find_element(by=By.NAME, value='address').get_attribute('value')
         return Contact(name=firstname, surname=surname, id=id, home_number=homenumber,
                        mobile_number=mobilenumber, work_number=worknumber, phone2=phone2,
                        email1=email1, email2=email2,
-                       email3= email3, comp_address=adress)
+                       email3= email3, comp_address=address)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
