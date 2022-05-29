@@ -17,6 +17,15 @@ class DeleteHelper:
         self.app.navigation.return_to_homepage()
         self.app.contact.contact_cache = None
 
+    def contact_by_id1(self, id1):
+        wd = self.app.wd
+        self.app.contact.select_contact_by_id1(id1)
+        # submit deletion
+        wd.find_element(by=By.XPATH, value="//input[@value='Delete']").click()
+        wd.switch_to.alert.accept()
+        self.app.navigation.return_to_homepage()
+        self.app.contact.contact_cache = None
+
     def all_contacts(self):
         wd = self.app.wd
         # select all contacts
