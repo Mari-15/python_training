@@ -85,4 +85,8 @@ class GroupHelper:
                 self.group_cache.append(Group(number_of_group=id, name=text))
         return list(self.group_cache)
 
+    def select_group_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element(by=By.CSS_SELECTOR, value="input[value='%s']" % id).click()
+
 

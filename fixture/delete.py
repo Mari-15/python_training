@@ -39,3 +39,12 @@ class DeleteHelper:
         self.app.group.return_to_groups_page()
         self.app.group.group_cache = None
 
+    def group_by_id(self, id):
+        wd = self.app.wd
+        self.app.group.open_groups_page()
+        self.app.group.select_group_by_id(id)
+        # submit deletion
+        wd.find_element(by=By.NAME, value="delete").click()
+        self.app.group.return_to_groups_page()
+        self.app.group.group_cache = None
+
