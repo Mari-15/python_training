@@ -31,13 +31,14 @@ class Contact:
         self.all_emails = all_emails
 
     def __repr__(self):
-        return "%s: %s %s; %s, %s, %s, %s" % (self.number_of_contact, self.surname, self.name, self.comp_address,
-                                              self.email1, self.home_number, self.work_number)
+        return "%s: %s, %s; %s; %s; %s" % (self.number_of_contact, self.surname, self.name, self.comp_address, self.all_emails, self.all_phones_from_homepage)
 
     def __eq__(self, other):
         return (self.number_of_contact is None or other.number_of_contact is None
                 or self.number_of_contact == other.number_of_contact) \
-               and self.surname == other.surname and self.name == other.name
+               and self.surname == other.surname and self.name == other.name \
+               and (self.comp_address is None or other.comp_address is None
+                or self.comp_address == other.comp_address)
 
     def id_or_max(self):
         if self.number_of_contact:
