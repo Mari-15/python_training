@@ -56,9 +56,9 @@ class ContactHelper:
         self.app.navigation.return_to_homepage()
         self.contact_cache = None
 
-    def add_first_contact_to_group(self, group_name):
+    def add_some_contact_to_group(self, group_name, id1):
         wd = self.app.wd
-        self.select_first_contact()
+        self.select_contact_by_id1(id1)
         self.app.group.open_group_list_and_select_group(group_name)
         # submit add
         wd.find_element(by=By.NAME, value="add").click()
@@ -84,12 +84,12 @@ class ContactHelper:
         # submit add
         wd.find_element(by=By.NAME, value="add").click()
 
-    def remove_first_contact_from_group(self, group_name):
+    def remove_first_contact_from_group(self, group_name, id1):
         wd = self.app.wd
         # select group
         wd.find_element(by=By.NAME, value="group").click()
         Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text(group_name)
-        self.select_first_contact()
+        self.select_contact_by_id1(id1)
         # submit remove
         wd.find_element(by=By.NAME, value="remove").click()
         self.app.navigation.return_to_homepage()
