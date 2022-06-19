@@ -9,7 +9,10 @@ def test_modify_some_group(app, db, check_ui, data_group):
     old_groups = db.get_group_list()
     group1 = random.choice(old_groups)
     app.modify.group_by_id(group1.number_of_group, group)
-    assert len(old_groups) == app.group.count()
+    for i in range(len(old_groups)):
+        if old_groups[i].number_of_group == group1.number_of_group:
+            old_groups[i] = group1
+        return old_groups
     new_groups = db.get_group_list()
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
     if check_ui:

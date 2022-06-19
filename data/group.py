@@ -1,5 +1,5 @@
 from model.group import Group
 
 testdata = [
-    Group(name='name1', header='header1', footer='footer1')
+    Group(name='Poslat1', header='Vernia1', footer='footer1')
 ]
