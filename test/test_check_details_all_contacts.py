@@ -12,13 +12,12 @@ def test_check_details_all_contacts(app, db, data_contact):
                        email1=contact.email1, email2=contact.email2, email3=contact.email3,
                        home_number=contact.home_number, mobile_number=contact.mobile_number,
                        work_number=contact.work_number, phone2=contact.phone2)
-    contact_from_homepage = app.contact.get_contact_list()
-    contact_from_db = list(map(clean, db.get_contact_list()))
+    contact_from_homepage = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
+    contact_from_db = sorted(list(map(clean, db.get_contact_list())), key=Contact.id_or_max)
     for i in range(len(contact_from_homepage)):
         assert contact_from_homepage[i].all_emails == merge_emails_like_on_homepage(contact_from_db[i])
-    for i in range(len(contact_from_homepage)):
         assert contact_from_homepage[i].all_phones_from_homepage == merge_phones_like_on_homepage(contact_from_db[i])
-    assert sorted(contact_from_homepage, key=Contact.id_or_max) == sorted(contact_from_db, key=Contact.id_or_max)
+    assert contact_from_homepage == contact_from_db
 
 
 def clear(s):
