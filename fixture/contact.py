@@ -58,7 +58,7 @@ class ContactHelper:
 
     def add_some_contact_to_group(self, group_name, id1):
         wd = self.app.wd
-        self.select_contact_by_id1(id1)
+        self.select_contact_by_id2(id1)
         self.app.group.open_group_list_and_select_group(group_name)
         # submit add
         wd.find_element(by=By.NAME, value="add").click()
@@ -75,6 +75,10 @@ class ContactHelper:
     def select_contact_by_id1(self, id1):
         wd = self.app.wd
         wd.find_element(by=By.CSS_SELECTOR, value='[href="edit.php?id=%s"]' % id1).click()
+
+    def select_contact_by_id2(self, id2):
+        wd = self.app.wd
+        wd.find_element(by=By.ID, value=id2).click()
 
     def add_all_contacts_to_group(self, group_name):
         wd = self.app.wd

@@ -10,6 +10,9 @@ db1 = ORMFixture(host='127.0.0.1', name='addressbook', user='root', password='')
 def test_add_contact_to_group_db(app, db):
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(name="Roland", surname="Braund"))
+    if len(db.get_group_list()) == 0:
+        app.group.create(Group(name='Lost one'))
+        app.navigation.return_to_homepage()
     contacts = db.get_contact_list()
     groups = db.get_group_list()
     contact = random.choice(contacts)
