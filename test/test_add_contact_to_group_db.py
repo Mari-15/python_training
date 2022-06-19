@@ -13,10 +13,10 @@ def test_add_contact_to_group_db(app, db):
     if len(db.get_group_list()) == 0:
         app.group.create(Group(name='Lost one'))
         app.navigation.return_to_homepage()
-    contacts = db.get_contact_list()
     groups = db.get_group_list()
-    contact = random.choice(contacts)
     group = random.choice(groups)
+    contacts = db1.get_contacts_not_in_group(Group(number_of_group=group.number_of_group))
+    contact = random.choice(contacts)
     contact_in_group_old = db1.get_contacts_in_group(Group(number_of_group=group.number_of_group))
     app.contact.add_some_contact_to_group(group_name=group.name, id1=contact.number_of_contact)
     contact_in_group_old.append(contact)
