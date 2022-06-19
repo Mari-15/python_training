@@ -1,5 +1,5 @@
+import random
 from model.contact import Contact
-from random import randrange
 
 
 def test_modify_some_contacts(app, data_contact, db, check_ui):
@@ -8,11 +8,9 @@ def test_modify_some_contacts(app, data_contact, db, check_ui):
         app.contact.create(contact)
         app.contact.create(contact)
     old_contacts = db.get_contact_list()
-    index = randrange(len(old_contacts))
-    contact.number_of_contact = old_contacts[index].number_of_contact
-    app.modify.contact_by_index(index, contact)
+    contact1 = random.choice(old_contacts)
+    app.modify.contact_by_id(contact1.number_of_contact, contact)
     assert len(old_contacts) == app.contact.count()
-    old_contacts[index] = contact
     new_contacts = db.get_contact_list()
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
     if check_ui:
