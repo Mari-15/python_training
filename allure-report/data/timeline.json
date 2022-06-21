@@ -1,0 +1,115 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "Boiard-ПК",
+    "children" : [ {
+      "name" : "21396-MainThread",
+      "children" : [ {
+        "name" : "test_add_group[None:name 6ewLYQM;headeroG  9K;footerEwC  7i2CXFG]",
+        "uid" : "2a3c40cf189bd83",
+        "parentUid" : "21835b4be9f463f81b3a5a083c30380a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1655850198384,
+          "stop" : 1655850199501,
+          "duration" : 1117
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "None:name 6ewLYQM;headeroG  9K;footerEwC  7i2CXFG" ]
+      }, {
+        "name" : "test_add_group[None:nameUJ;headerDpgUd;footerxFX sh 6bQ76  urP]",
+        "uid" : "c160bda4baf37f72",
+        "parentUid" : "21835b4be9f463f81b3a5a083c30380a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1655850199539,
+          "stop" : 1655850200632,
+          "duration" : 1093
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "None:nameUJ;headerDpgUd;footerxFX sh 6bQ76  urP" ]
+      }, {
+        "name" : "test_add_group[None:namesgV1;header5hpS8Ba;footeriV nyKdmleyzbW Y]",
+        "uid" : "a31711717c9e7a48",
+        "parentUid" : "21835b4be9f463f81b3a5a083c30380a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1655850200671,
+          "stop" : 1655850201782,
+          "duration" : 1111
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "None:namesgV1;header5hpS8Ba;footeriV nyKdmleyzbW Y" ]
+      }, {
+        "name" : "test_add_group[None:nameAmy7t 6;headermqQbj uHf N1 yMY 1W;footerZ73i q7oxPatN8g]",
+        "uid" : "8b48e4fcc3a93e5b",
+        "parentUid" : "21835b4be9f463f81b3a5a083c30380a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1655850196124,
+          "stop" : 1655850197201,
+          "duration" : 1077
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "None:nameAmy7t 6;headermqQbj uHf N1 yMY 1W;footerZ73i q7oxPatN8g" ]
+      }, {
+        "name" : "test_add_group[None:;;]",
+        "uid" : "ad39ecc7fb7d2841",
+        "parentUid" : "21835b4be9f463f81b3a5a083c30380a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1655850194796,
+          "stop" : 1655850196071,
+          "duration" : 1275
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "None:;;" ]
+      }, {
+        "name" : "test_add_group[None:namem;headerzOU Egyjg;footerCwHVNVNBKVN5]",
+        "uid" : "8d99106f13d0bbea",
+        "parentUid" : "21835b4be9f463f81b3a5a083c30380a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1655850197248,
+          "stop" : 1655850198345,
+          "duration" : 1097
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "None:namem;headerzOU Egyjg;footerCwHVNVNBKVN5" ]
+      } ],
+      "uid" : "21835b4be9f463f81b3a5a083c30380a"
+    } ],
+    "uid" : "c8b4987f6c8a8aa26294286b3c41ee7d"
+  } ]
+}

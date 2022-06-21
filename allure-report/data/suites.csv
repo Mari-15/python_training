@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Jun 22 01:23:19 MSK 2022","Wed Jun 22 01:23:20 MSK 2022","1093","test","test_add_group","","","","test_add_group[None:nameUJ;headerDpgUd;footerxFX sh 6bQ76  urP]",""
+"passed","Wed Jun 22 01:23:20 MSK 2022","Wed Jun 22 01:23:21 MSK 2022","1111","test","test_add_group","","","","test_add_group[None:namesgV1;header5hpS8Ba;footeriV nyKdmleyzbW Y]",""
+"passed","Wed Jun 22 01:23:17 MSK 2022","Wed Jun 22 01:23:18 MSK 2022","1097","test","test_add_group","","","","test_add_group[None:namem;headerzOU Egyjg;footerCwHVNVNBKVN5]",""
+"passed","Wed Jun 22 01:23:18 MSK 2022","Wed Jun 22 01:23:19 MSK 2022","1117","test","test_add_group","","","","test_add_group[None:name 6ewLYQM;headeroG  9K;footerEwC  7i2CXFG]",""
+"passed","Wed Jun 22 01:23:16 MSK 2022","Wed Jun 22 01:23:17 MSK 2022","1077","test","test_add_group","","","","test_add_group[None:nameAmy7t 6;headermqQbj uHf N1 yMY 1W;footerZ73i q7oxPatN8g]",""
+"passed","Wed Jun 22 01:23:14 MSK 2022","Wed Jun 22 01:23:16 MSK 2022","1275","test","test_add_group","","","","test_add_group[None:;;]",""
