@@ -93,7 +93,7 @@ class ContactHelper:
         # select group
         wd.find_element(by=By.NAME, value="group").click()
         Select(wd.find_element(by=By.NAME, value="group")).select_by_visible_text(group_name)
-        self.select_contact_by_id1(id1)
+        self.select_contact_by_id2(id1)
         # submit remove
         wd.find_element(by=By.NAME, value="remove").click()
         self.app.navigation.return_to_homepage()
