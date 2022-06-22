@@ -6,6 +6,8 @@ db1 = ORMFixture(host='127.0.0.1', name='addressbook', user='root', password='')
 
 
 def test_remove_some_contact_from_group(app, db):
+    def clean(group):
+        return Group(name=group.name.strip(), header=group.header.strip(), footer=group.footer.strip())
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(name="Roland", surname="Braund"))
     if len(db.get_group_list()) == 0:
@@ -13,7 +15,7 @@ def test_remove_some_contact_from_group(app, db):
         app.navigation.return_to_homepage()
     contacts = db.get_contact_list()
     contact = random.choice(contacts)
-    groups = db.get_group_list()
+    groups = list(map(clean,db.get_group_list()))
     group = random.choice(groups)
     contact_in_group_old = db1.get_contacts_in_group(Group(number_of_group=group.number_of_group))
     if contact not in contact_in_group_old:
