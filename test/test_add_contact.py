@@ -2,10 +2,10 @@ from model.contact import Contact
 
 
 def test_add_contact(app, db, check_ui, json_contacts):
+    contact = json_contacts
     def clean(contact):
         return Contact(number_of_contact=contact.number_of_contact,
                        name=contact.name.strip(), surname=contact.surname.strip())
-    contact = json_contacts
     old_contacts = db.get_contact_list()
     app.contact.create(contact)
     new_contacts = db.get_contact_list()

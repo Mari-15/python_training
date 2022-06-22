@@ -8,7 +8,7 @@ def test_check_details_all_contacts(app, db, data_contact):
         app.contact.create(contact_new)
     def clean(contact):
         return Contact(number_of_contact=contact.number_of_contact, name=contact.name.strip(),
-                       surname=contact.surname.strip(), comp_address=contact.comp_address,
+                       surname=contact.surname.strip(), comp_address=contact.comp_address.strip(),
                        email1=contact.email1, email2=contact.email2, email3=contact.email3,
                        home_number=contact.home_number, mobile_number=contact.mobile_number,
                        work_number=contact.work_number, phone2=contact.phone2)
