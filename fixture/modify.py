@@ -27,6 +27,7 @@ class ModifyHelper:
 
     def contact_by_id(self, id1, contact):
         wd = self.app.wd
+        self.app.navigation.return_to_homepage()
         self.app.contact.select_contact_by_id1(id1)
         self.app.contact.contact_fill_form(contact)
         # submit edit a contact
