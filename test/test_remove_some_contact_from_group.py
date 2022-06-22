@@ -6,7 +6,6 @@ db1 = ORMFixture(host='127.0.0.1', name='addressbook', user='root', password='')
 
 
 def test_remove_some_contact_from_group(app, db):
-    flag = True
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(name="Roland", surname="Braund"))
     if len(db.get_group_list()) == 0:
@@ -21,9 +20,7 @@ def test_remove_some_contact_from_group(app, db):
         app.group.show_all_contacts()
         app.contact.add_some_contact_to_group(group_name=group.name, id1=contact.number_of_contact)
         contact_in_group_old = db1.get_contacts_in_group(Group(number_of_group=group.number_of_group))
-        flag = False
     app.contact.remove_first_contact_from_group(group_name=group.name, id1=contact.number_of_contact)
-    if not flag:
-        contact_in_group_old.remove(contact)
+    contact_in_group_old.remove(contact)
     contact_in_group_new = db1.get_contacts_in_group(Group(number_of_group=group.number_of_group))
     assert sorted(contact_in_group_old, key=Contact.id_or_max) == sorted(contact_in_group_new, key=Contact.id_or_max)
