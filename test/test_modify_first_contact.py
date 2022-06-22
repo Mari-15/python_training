@@ -8,10 +8,9 @@ def test_modify_first_contact(app, db, data_contact, check_ui):
     def clean(contact):
         return Contact(number_of_contact=contact.number_of_contact,
                        name=contact.name.strip(), surname=contact.surname.strip())
-    old_contacts = db.get_contact_list()
+    old_contacts = sorted(db.get_contact_list(), key=Contact.id_or_max)
     contact.number_of_contact = old_contacts[0].number_of_contact
-    app.modify.first_contact(contact)
-    assert len(old_contacts) == len(db.get_contact_list())
+    app.modify.first_contact(contact, contact.number_of_contact)
     new_contacts = db.get_contact_list()
     old_contacts[0] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)

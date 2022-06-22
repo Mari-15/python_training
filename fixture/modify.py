@@ -6,10 +6,10 @@ class ModifyHelper:
     def __init__(self, app):
         self.app = app
 
-    def first_contact(self, contact):
+    def first_contact(self, contact, index):
         wd = self.app.wd
         # init edit first contact
-        wd.find_element(by=By.XPATH, value="//img[@alt='Edit']").click()
+        self.app.contact.select_contact_by_id1(index)
         self.app.contact.contact_fill_form(contact)
         # submit edit a contact
         wd.find_element(by=By.XPATH, value="//div[@id='content']/form/input[22]").click()
