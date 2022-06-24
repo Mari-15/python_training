@@ -74,6 +74,7 @@ class ContactHelper:
 
     def select_contact_by_id1(self, id1):
         wd = self.app.wd
+        self.app.navigation.return_to_homepage()
         wd.find_element(by=By.CSS_SELECTOR, value='[href="edit.php?id=%s"]' % id1).click()
 
     def select_contact_by_id2(self, id2):
